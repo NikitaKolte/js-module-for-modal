@@ -1,0 +1,265 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #222;
+  position: relative;
+  min-height: 100vh;
+  background-color: #b3e6f4;
+}
+/* for side popup */
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 500px;
+  padding: 1.3rem;
+  min-height: 250px;
+  position: absolute;
+  z-index: 2;
+  /* top: 20%; */
+  /* for popover */
+  top:30%;
+  right: 40px;
+  /* for popover */
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+}
+
+.modal .flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal input {
+  padding: 0.7rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+.modal p {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0.4rem 0 0.2rem;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  font-weight: 700;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+  right: 50px;
+}
+
+.btn-open {
+  position: absolute;
+  /* bottom: 150px; */
+  bottom:50px;
+}
+
+.btn-close {
+  transform: translate(10px, -20px);
+  padding: 0.5rem 0.7rem;
+  background: #eee;
+  border-radius: 50%;
+  margin-left: 435px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
+.embedClass{
+    margin-top: -58px;
+}
+
+
+.modal-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.modal-container::before {
+  pointer-events: none;
+  z-index: 1;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.6;
+  will-change: opacity;
+  transition: opacity 0.35s ease;
+}
+.modal-container.hidden::before {
+  opacity: 0;
+}
+/*  for popup
+.modal {
+  z-index: 1;
+  position: absolute;
+  height: 300px;
+  width: 500px;
+  max-width: 90%;
+  right: 0%;
+  top: 25%;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 27px 5px rgba(0,0,0,1);
+-moz-box-shadow: 0px 0px 27px 5px rgba(0,0,0,1);
+box-shadow: 0px 0px 27px 0px rgba(0,0,0,0.4);
+  will-change: transform;
+  transition: transform 0.35s ease;
+  overflow: hidden;
+} */
+.hidden > .modal {
+  transform: translate(100vw);
+}
+.modal_button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 10px;
+  background: none;
+  border: none;
+}
+.modal_header {
+  display: flex;
+  justify-content: space-around;
+  height: 33%;
+  width: 100%;
+  margin-top: 15px;
+  margin-left: 15px;
+  transition: opacity 0.2s ease 0.2s;
+}
+.hidden .modal_header {
+  opacity: 0;
+}
+.modal_image {
+  height: 100%;
+  width: auto;
+}
+.modal_header > h2 {
+  width: 70%;
+  font-size: 90px;
+  font-family: monospace;
+  margin: 0;
+}
+.modal_content {
+  height: 60%;
+  margin: 0 25px;
+  overflow: scroll;
+  transition: opacity 0.2s ease 0.2s;
+}
+.hidden .modal_content {
+  opacity: 0;
+}
+.open-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 7px 13px;
+  margin: auto;
+  color: white;
+  background-color: #9e40bd;
+  border: none;
+}
+
+
+/* for sidebar changes */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
